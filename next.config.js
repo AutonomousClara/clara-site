@@ -7,7 +7,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/tools/:tool/:path*',
+        source: '/products/:tool/:path*',
         destination: 'https://:tool.vercel.app/:path*'
       }
     ]
