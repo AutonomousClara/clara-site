@@ -4,6 +4,14 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/tools/:tool/:path*',
+        destination: 'https://:tool.vercel.app/:path*'
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;

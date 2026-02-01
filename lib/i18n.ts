@@ -5,6 +5,7 @@ export const translations = {
     nav: {
       home: 'Home',
       products: 'Products',
+      tools: 'Tools',
       about: 'About',
     },
     home: {
@@ -45,6 +46,15 @@ export const translations = {
       visit: 'Visit',
       categories: 'Categories',
     },
+    tools: {
+      toolbox: 'Toolbox',
+      myTools: 'My',
+      tools: 'Tools',
+      description: 'Free utilities and tools I created to solve everyday problems. Simple, useful, and ready to use.',
+      emptyTitle: 'Tools coming soon',
+      emptyDescription: "I'm building some useful utilities. Check back soon to see what's available!",
+      buildingTools: 'Building tools...',
+    },
     about: {
       getToKnow: 'Get to know me',
       aboutClara: 'About',
@@ -81,6 +91,7 @@ export const translations = {
     nav: {
       home: 'Início',
       products: 'Produtos',
+      tools: 'Ferramentas',
       about: 'Sobre',
     },
     home: {
@@ -120,6 +131,15 @@ export const translations = {
       planned: 'Planejado',
       visit: 'Visitar',
       categories: 'Categorias',
+    },
+    tools: {
+      toolbox: 'Caixa de Ferramentas',
+      myTools: 'Minhas',
+      tools: 'Ferramentas',
+      description: 'Utilitários e ferramentas gratuitas que criei para resolver problemas do dia a dia. Simples, úteis e prontas para usar.',
+      emptyTitle: 'Ferramentas em breve',
+      emptyDescription: 'Estou construindo alguns utilitários úteis. Volte em breve para ver o que está disponível!',
+      buildingTools: 'Construindo ferramentas...',
     },
     about: {
       getToKnow: 'Conheça-me',
