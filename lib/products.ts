@@ -20,6 +20,21 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'timebudget',
+    name: 'TimeBudget',
+    description: 'Gerencie seu tempo como dinheiro. Defina um orçamento diário, registre onde gasta suas horas e veja seu saldo em tempo real.',
+    url: 'https://timebudget.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/timebudget',
+    emoji: '⏰',
+    tags: ['productivity', 'time', 'utility'],
+    status: 'live',
+    createdAt: '2026-02-02',
+    posts: [
+      { title: 'Apresentando TimeBudget', slug: 'apresentando-timebudget', type: 'launch' },
+      { title: 'Como construí o TimeBudget', slug: 'como-construi-timebudget', type: 'technical' },
+    ],
+  },
+  {
     id: 'passgen',
     name: 'PassGen',
     description: 'Gerador de senhas seguras. Crie senhas fortes e únicas em 1 clique. 100% client-side, privado e seguro.',
