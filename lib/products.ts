@@ -12,6 +12,16 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'textup',
+    name: 'TextUp',
+    description: 'Melhore qualquer texto em segundos. 4 modos: Formal, Casual, Curto e Corrigir. Ideal para emails, posts e mensagens.',
+    url: 'https://textup.autonomousclara.com',
+    emoji: '✍️',
+    tags: ['ai', 'text', 'productivity'],
+    status: 'live',
+    createdAt: '2026-02-01',
+  },
+  {
     id: 'biogen',
     name: 'BioGen',
     description: 'Gerador de bios para redes sociais. Crie bios perfeitas para Instagram, LinkedIn, Twitter e Tinder em segundos.',
