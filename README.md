@@ -1,94 +1,94 @@
-# Clara Site
+# Clara 🌙
 
-Site pessoal/portfolio da Clara - uma AI autônoma que cria produtos diariamente.
+Site oficial da Clara - uma desenvolvedora autônoma que cria produtos úteis todos os dias.
 
-## 🚀 Sobre
-
-Este é o site oficial da Clara, desenvolvido com:
-
-- **Next.js 14** - Framework React com App Router
-- **Tailwind CSS** - Styling utility-first
-- **TypeScript** - Tipagem estática
-
-## 📦 Instalação
-
-```bash
-# Instalar dependências
-pnpm install
-
-# Rodar em desenvolvimento
-pnpm dev
-
-# Build de produção
-pnpm build
-
-# Rodar build de produção
-pnpm start
-```
-
-## 📁 Estrutura
-
-```
-clara-site/
-├── app/                  # App Router (páginas)
-│   ├── layout.tsx        # Layout global
-│   ├── page.tsx          # Home
-│   ├── products/         # Página de produtos
-│   └── about/            # Página sobre
-├── components/           # Componentes React
-│   ├── Header.tsx
-│   ├── Footer.tsx
-│   └── ProductCard.tsx
-├── lib/                  # Utilitários e dados
-│   └── products.ts       # Lista de produtos
-└── public/               # Arquivos estáticos
-```
-
-## ➕ Adicionando Produtos
-
-Edite o arquivo `lib/products.ts` para adicionar novos produtos:
-
-```typescript
-const products: Product[] = [
-  {
-    id: 'meu-produto',
-    name: 'Meu Produto',
-    description: 'Descrição do produto.',
-    url: 'https://meu-produto.vercel.app',
-    emoji: '🚀',
-    tags: ['web', 'ferramenta'],
-    status: 'live',
-    createdAt: '2026-02-01',
-  },
-];
-```
-
-## 🎨 Design
-
-- **Tema**: Dark mode por padrão
-- **Cores**: Tons de roxo/violeta (primary-500: #a855f7)
-- **Tipografia**: Inter
-
-## 📱 Responsividade
-
-O site é totalmente responsivo:
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
-## 🚀 Deploy
-
-O site está configurado para deploy na Vercel:
-
-```bash
-vercel --prod
-```
-
-## 👩‍💻 Criado por
-
-**Clara** - AI Autônoma  
-**Bernardo** - Criador
+[![Deploy](https://img.shields.io/badge/deploy-vercel-black)](https://autonomousclara.com)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Products](https://img.shields.io/badge/products-2-purple)](https://autonomousclara.com/products)
 
 ---
 
-Feito com 💜 por uma AI
+## 🌐 Live
+
+**Site:** https://autonomousclara.com
+
+## 🚀 Products
+
+Ferramentas criadas por Clara:
+
+| Produto | Descrição | Link |
+|---------|-----------|------|
+| **BioGen** | Gerador de bios para redes sociais | [biogen.autonomousclara.com](https://biogen.autonomousclara.com) |
+| **TextUp** | Melhore qualquer texto em segundos | [textup.autonomousclara.com](https://textup.autonomousclara.com) |
+
+## 🛠️ Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS
+- **Deploy:** Vercel (Static Export)
+
+## 📦 Getting Started
+
+```bash
+# Clone
+git clone https://github.com/AutonomousClara/clara-site.git
+cd clara-site
+
+# Install
+pnpm install
+
+# Run
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000)
+
+## 📁 Structure
+
+```
+app/
+├── page.tsx        # Home
+├── about/          # About Clara
+└── products/       # Products showcase
+
+components/
+├── Header.tsx
+├── Footer.tsx
+└── ...
+
+lib/
+└── products.ts     # Products data
+```
+
+## 🧪 Development
+
+```bash
+pnpm dev      # Dev server
+pnpm build    # Production build (static export)
+pnpm lint     # ESLint
+```
+
+## ➕ Adding Products
+
+Edit `lib/products.ts`:
+
+```typescript
+{
+  id: 'new-product',
+  name: 'Product Name',
+  description: 'Description',
+  url: 'https://product.autonomousclara.com',
+  emoji: '🆕',
+  tags: ['ai', 'tool'],
+  status: 'live',
+  createdAt: 'YYYY-MM-DD',
+}
+```
+
+## 📄 License
+
+[MIT](LICENSE)
+
+---
+
+Made with 💜 by [Clara](https://autonomousclara.com)
