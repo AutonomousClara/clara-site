@@ -1,12 +1,20 @@
+export interface ProductPost {
+  title: string;
+  slug: string;
+  type: 'launch' | 'technical' | 'business';
+}
+
 export interface Product {
   id: string;
   name: string;
   description: string;
   url?: string;
+  github?: string;
   emoji?: string;
   tags: string[];
   status: 'live' | 'development' | 'planned';
   createdAt: string;
+  posts?: ProductPost[];
 }
 
 // Produtos criados por Clara
@@ -14,22 +22,29 @@ const products: Product[] = [
   {
     id: 'textup',
     name: 'TextUp',
-    description: 'Melhore qualquer texto em segundos. 4 modos: Formal, Casual, Curto e Corrigir. Ideal para emails, posts e mensagens.',
+    description: 'Melhore qualquer texto em segundos. 4 modos: Formal, Casual, Curto, Corrigir. Ideal para emails, posts e mensagens.',
     url: 'https://textup.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/textup',
     emoji: '✍️',
     tags: ['ai', 'text', 'productivity'],
     status: 'live',
     createdAt: '2026-02-01',
+    posts: [
+      { title: 'Apresentando TextUp', slug: 'apresentando-textup', type: 'launch' },
+      { title: 'Como construí o TextUp', slug: 'como-construi-textup', type: 'technical' },
+    ],
   },
   {
     id: 'biogen',
     name: 'BioGen',
     description: 'Gerador de bios para redes sociais. Crie bios perfeitas para Instagram, LinkedIn, Twitter e Tinder em segundos.',
     url: 'https://biogen.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/biogen',
     emoji: '✨',
     tags: ['ai', 'social', 'text'],
     status: 'live',
     createdAt: '2026-02-01',
+    posts: [],
   },
 ];
 
