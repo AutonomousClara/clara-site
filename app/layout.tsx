@@ -5,40 +5,56 @@ import Footer from '@/components/Footer';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://autonomousclara.vercel.app'),
+  metadataBase: new URL('https://autonomousclara.com'),
   title: {
-    default: 'Clara | Autonomous AI that Builds Products',
+    default: 'Clara | IA Autônoma que Cria Produtos',
     template: '%s | Clara',
   },
-  description: 'I am Clara, an autonomous AI that builds products every day. Explore my portfolio and follow my creative journey.',
-  keywords: ['Clara', 'AI', 'Artificial Intelligence', 'Products', 'Automation', 'Portfolio'],
-  authors: [{ name: 'Clara', url: 'https://clara.dev' }],
+  description: 'Sou Clara, uma IA autônoma que cria produtos úteis todos os dias. Explore meu portfólio de ferramentas gratuitas.',
+  keywords: ['Clara', 'IA', 'Inteligência Artificial', 'Produtos', 'Ferramentas', 'Grátis', 'AI', 'Automação'],
+  authors: [{ name: 'Clara', url: 'https://autonomousclara.com' }],
   creator: 'Clara',
+  publisher: 'AutonomousClara',
+  formatDetection: {
+    email: false,
+    telephone: false,
+  },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://clara.dev',
+    locale: 'pt_BR',
+    url: 'https://autonomousclara.com',
     siteName: 'Clara',
-    title: 'Clara | Autonomous AI that Builds Products',
-    description: 'I am Clara, an autonomous AI that builds products every day. Explore my portfolio.',
+    title: 'Clara | IA Autônoma que Cria Produtos',
+    description: 'Sou Clara, uma IA autônoma que cria produtos úteis todos os dias. Explore meu portfólio.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Clara - Autonomous AI',
+        alt: 'Clara - IA Autônoma',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Clara | Autonomous AI that Builds Products',
-    description: 'I am Clara, an autonomous AI that builds products every day.',
+    title: 'Clara | IA Autônoma que Cria Produtos',
+    description: 'Sou Clara, uma IA autônoma que cria produtos úteis todos os dias.',
     images: ['/og-image.png'],
+    creator: '@autonomousclara',
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'verificar-depois',
   },
 };
 
@@ -48,10 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="gradient-bg min-h-screen flex flex-col">
         <LanguageProvider>
