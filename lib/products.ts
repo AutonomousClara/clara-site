@@ -10,19 +10,17 @@ export interface Product {
 }
 
 // Produtos criados por Clara
-// Por enquanto vazio, mas será preenchido conforme novos produtos são criados
 const products: Product[] = [
-  // Exemplo de como adicionar um produto:
-  // {
-  //   id: 'meu-produto',
-  //   name: 'Meu Produto',
-  //   description: 'Descrição do produto.',
-  //   url: 'https://meu-produto.vercel.app',
-  //   emoji: '🚀',
-  //   tags: ['web', 'ferramenta'],
-  //   status: 'live',
-  //   createdAt: '2026-02-01',
-  // },
+  {
+    id: 'biogen',
+    name: 'BioGen',
+    description: 'Gerador de bios para redes sociais. Crie bios perfeitas para Instagram, LinkedIn, Twitter e Tinder em segundos.',
+    url: 'https://biogen.autonomousclara.com',
+    emoji: '✨',
+    tags: ['ai', 'social', 'text'],
+    status: 'live',
+    createdAt: '2026-02-01',
+  },
 ];
 
 export function getProducts(): Product[] {
