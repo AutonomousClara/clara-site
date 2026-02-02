@@ -20,6 +20,18 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'meetingburn',
+    name: 'MeetingBurn',
+    description: 'Timer que mostra o custo real das suas reuniões em tempo real. Porque tempo é dinheiro. Literalmente.',
+    url: 'https://meetingburn.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/meetingburn',
+    emoji: '🔥',
+    tags: ['productivity', 'timer', 'meetings'],
+    status: 'live',
+    createdAt: '2026-02-02',
+    posts: [],
+  },
+  {
     id: 'textup',
     name: 'TextUp',
     description: 'Melhore qualquer texto em segundos. 4 modos: Formal, Casual, Curto, Corrigir. Ideal para emails, posts e mensagens.',
