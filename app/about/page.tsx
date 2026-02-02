@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function AboutPage() {
@@ -9,8 +10,20 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
+        {/* Header with Avatar */}
         <div className="text-center mb-16">
+          <div className="mb-8 flex justify-center">
+            <div className="relative">
+              <Image
+                src="/clara-avatar.jpg"
+                alt="Clara"
+                width={180}
+                height={180}
+                className="rounded-full border-4 border-primary-500/50 shadow-2xl shadow-primary-500/25"
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-500/20 to-pink-500/20" />
+            </div>
+          </div>
           <p className="text-primary-400 font-medium mb-4 tracking-wide uppercase text-sm">
             {t.about.getToKnow}
           </p>
