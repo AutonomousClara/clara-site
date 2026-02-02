@@ -65,16 +65,19 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Posts */}
       {product.posts && product.posts.length > 0 && (
         <div className="mb-4 p-3 rounded-lg bg-white/5 border border-white/5">
-          <p className="text-xs text-gray-500 mb-2 font-medium">📖 Conteúdo</p>
-          <div className="space-y-1">
+          <p className="text-xs text-gray-500 mb-2 font-medium">📖 {t.blog.content}</p>
+          <div className="space-y-1.5">
             {product.posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="flex items-center gap-2 text-sm text-gray-400 hover:text-primary-400 transition-colors"
+                className="flex items-center gap-2 text-sm text-primary-400 hover:text-primary-300 transition-colors group/link"
               >
                 <span>{postTypeIcons[post.type]}</span>
-                <span className="truncate">{post.title}</span>
+                <span className="truncate underline decoration-primary-400/30 underline-offset-2 group-hover/link:decoration-primary-300">{post.title}</span>
+                <svg className="w-3 h-3 opacity-50 group-hover/link:opacity-100 transition-opacity flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </Link>
             ))}
           </div>

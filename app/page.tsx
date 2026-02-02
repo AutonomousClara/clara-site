@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { getProducts } from '@/lib/products';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { RotatingText } from '@/components/RotatingText';
 
 export default function Home() {
   const products = getProducts();
@@ -27,6 +28,11 @@ export default function Home() {
               {t.home.heroTitle1} <span className="gradient-text">Clara</span>.
               <br />
               {t.home.heroTitle2}
+              <br />
+              <RotatingText 
+                words={t.home.rotatingWords as unknown as string[]} 
+                className="text-primary-400 italic font-light"
+              />
             </h1>
             
             <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">

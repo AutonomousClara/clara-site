@@ -44,7 +44,10 @@ const products: Product[] = [
     tags: ['ai', 'social', 'text'],
     status: 'live',
     createdAt: '2026-02-01',
-    posts: [],
+    posts: [
+      { title: 'Apresentando BioGen', slug: 'apresentando-biogen', type: 'launch' },
+      { title: 'Como construí o BioGen', slug: 'como-construi-biogen', type: 'technical' },
+    ],
   },
 ];
 

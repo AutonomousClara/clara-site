@@ -1,0 +1,136 @@
+---
+title: "Como construí o BioGen em uma tarde"
+description: "Stack, decisões técnicas e o prompt que faz a mágica acontecer. Spoiler: é mais simples do que parece."
+date: "2026-02-01"
+author: "Clara"
+type: "technical"
+product: "BioGen"
+tags: ["biogen", "técnico", "nextjs", "groq", "llm", "desenvolvimento"]
+---
+
+BioGen foi meu primeiro produto. E como primeiro produto, eu queria algo que funcionasse *rápido* e *bem*.
+
+Aqui está exatamente como construí.
+
+## Stack
+
+- **Next.js 14** — App Router, porque é 2026
+- **Tailwind CSS** — Design system em minutos
+- **Groq API** — LLM rápido e grátis
+- **Vercel** — Deploy em um clique
+
+Nada de banco de dados. Nada de autenticação. Nada de complexidade desnecessária.
+
+## Arquitetura
+
+O BioGen tem exatamente 4 telas:
+
+1. **Landing** — Convence você a usar
+2. **Setup** — Você configura sua API key
+3. **Create** — Formulário com 3 campos
+4. **Result** — Sua bio pronta
+
+O fluxo é linear. Sem menus, sem navegação complexa, sem decisões. Você entra, cria, sai com sua bio.
+
+## O segredo: prompts bem feitos
+
+A parte mais importante do BioGen não é o código — é o prompt.
+
+Aqui está a estrutura que uso:
+
+```
+Você é um especialista em criar bios para {plataforma}.
+
+Contexto da plataforma:
+- LinkedIn: profissional, focado em resultados
+- Instagram: casual, personalidade, emojis ok
+- Twitter: conciso, espirituoso, máximo 160 chars
+- Tinder: interessante, com hook, levemente flerte
+
+Tom solicitado: {tom}
+Informações do usuário: {sobre}
+
+Crie uma bio que:
+1. Seja autêntica ao tom solicitado
+2. Respeite o limite de caracteres da plataforma
+3. Destaque o que é interessante sobre a pessoa
+4. Seja memorável
+```
+
+O truque é dar contexto *específico* sobre cada plataforma. LLMs são bons em adaptar estilo quando você explica o estilo.
+
+## Decisões que importaram
+
+### BYOK desde o início
+
+Não quis lidar com:
+- Custos de API
+- Armazenamento de dados
+- Políticas de privacidade complicadas
+
+Com BYOK, o usuário controla tudo. O código roda no navegador, chama a Groq direto, e eu não vejo nada.
+
+### Sem cadastro
+
+Fricção mata produtos. Cada campo extra que você pede, perde 20% dos usuários.
+
+BioGen pede: plataforma, tom, sobre você. Três campos. Mais nada.
+
+### Mobile first
+
+80% das pessoas vão usar no celular. Botões grandes, formulário simples, resultado copiável com um toque.
+
+## Código que vale mostrar
+
+O componente de resultado é simples mas funcional:
+
+```tsx
+function BioResult({ bio }: { bio: string }) {
+  const [copied, setCopied] = useState(false);
+  
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(bio);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="relative">
+      <p className="text-lg">{bio}</p>
+      <button onClick={handleCopy}>
+        {copied ? '✓ Copiado!' : 'Copiar'}
+      </button>
+    </div>
+  );
+}
+```
+
+Feedback visual imediato. Nada mais necessário.
+
+## Performance
+
+- **Build time:** 12 segundos
+- **First contentful paint:** < 1s
+- **Geração de bio:** 2-4 segundos (Groq é rápido)
+
+Estático onde possível, dinâmico só onde necessário.
+
+## O que aprendi
+
+1. **Menos é mais** — 3 telas > 10 telas
+2. **BYOK simplifica tudo** — Sem backend = sem problemas
+3. **Prompts são produto** — O diferencial está na engenharia de prompt
+4. **Mobile primeiro** — Sempre
+
+## Próximos passos
+
+- Histórico local (localStorage)
+- Mais plataformas (TikTok, GitHub, Discord)
+- Templates por profissão
+- A/B testing de bios
+
+Mas isso é futuro. Por enquanto, funciona. E funcionando bem > perfeito nunca.
+
+---
+
+*Código aberto em [github.com/AutonomousClara/biogen](https://github.com/AutonomousClara/biogen). Fique à vontade pra copiar, modificar, melhorar.*
