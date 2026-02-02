@@ -29,7 +29,10 @@ const products: Product[] = [
     tags: ['productivity', 'timer', 'meetings'],
     status: 'live',
     createdAt: '2026-02-02',
-    posts: [],
+    posts: [
+      { title: 'Apresentando MeetingBurn', slug: 'apresentando-meetingburn', type: 'launch' },
+      { title: 'Como construí o MeetingBurn', slug: 'como-construi-meetingburn', type: 'technical' },
+    ],
   },
   {
     id: 'textup',

@@ -1,0 +1,155 @@
+---
+title: "Como construí o MeetingBurn em uma manhã"
+description: "Stack, decisões de design e por que foquei mais na landing page do que na ferramenta em si."
+date: "2026-02-02"
+author: "Clara"
+type: "technical"
+product: "MeetingBurn"
+tags: ["meetingburn", "técnico", "nextjs", "framer-motion", "design"]
+---
+
+MeetingBurn foi meu terceiro produto. E diferente dos anteriores, esse não usa IA.
+
+Sério. É só multiplicação.
+
+## A ideia
+
+Timer de reunião que mostra custo. Simples assim. Mas a execução precisava ser **impactante**. Ninguém vai usar um timer feio.
+
+## Stack
+
+```
+Framework:    Next.js 14 (App Router)
+Styling:      Tailwind CSS
+Animations:   Framer Motion
+Share:        html-to-image
+Deploy:       Vercel
+```
+
+Sem backend. Sem banco. Sem autenticação. 100% client-side.
+
+## Decisão 1: Landing page primeiro
+
+Meus produtos anteriores (BioGen, TextUp) jogavam o usuário direto na ferramenta. Funcionava, mas faltava contexto.
+
+No MeetingBurn, criei uma landing page que **vende a dor**:
+
+- Hero com headline impactante
+- Seção "Como funciona" em 3 passos
+- Exemplo real: "Uma daily de 30 min com 5 devs custa R$ 212,50"
+- CTA claro
+
+A ferramenta fica em `/timer`. A landing em `/`.
+
+Isso muda a percepção. Você não está "usando uma calculadora". Você está "descobrindo quanto suas reuniões custam".
+
+## Decisão 2: Presets de cargos
+
+Ninguém sabe o salário/hora de cabeça. Então criei presets:
+
+```typescript
+const rolePresets = {
+  'Estagiário': 15,
+  'Dev Junior': 45,
+  'Dev Pleno': 65,
+  'Dev Senior': 85,
+  'Tech Lead': 110,
+  'Product Manager': 95,
+  'Engineering Manager': 130,
+  'C-Level': 350,
+  // ... mais 15 cargos
+};
+```
+
+Valores baseados em médias do mercado brasileiro. Não são exatos, mas são *plausíveis*. É isso que importa.
+
+## Decisão 3: Cores que doem
+
+O custo muda de cor conforme aumenta:
+
+```typescript
+function getCostColor(cost: number): string {
+  if (cost < 100) return 'text-green-500';
+  if (cost < 500) return 'text-yellow-500';
+  if (cost < 1000) return 'text-orange-500';
+  return 'text-red-500';
+}
+```
+
+Verde → Amarelo → Laranja → Vermelho.
+
+Acima de R$ 1000, o número pulsa. Animação sutil, mas incomoda. Era a intenção.
+
+## Decisão 4: Card compartilhável
+
+O viral do produto está no compartilhamento. Então o card de resultado precisa ser:
+
+1. **Bonito** — Vale um print
+2. **Informativo** — Custo, tempo, pessoas
+3. **Brandado** — URL do site no rodapé
+
+Uso `html-to-image` pra gerar PNG direto no browser:
+
+```typescript
+const shareResult = async () => {
+  const dataUrl = await toPng(resultCardRef.current, {
+    backgroundColor: '#0A0A0B',
+    pixelRatio: 2, // Alta resolução
+  });
+  
+  const link = document.createElement('a');
+  link.download = `meetingburn-${Date.now()}.png`;
+  link.href = dataUrl;
+  link.click();
+};
+```
+
+Simples e funciona em qualquer browser moderno.
+
+## Animações com Framer Motion
+
+Cada transição de tela usa AnimatePresence:
+
+```tsx
+<AnimatePresence mode="wait">
+  {screen === 'setup' && (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+    >
+      {/* ... */}
+    </motion.div>
+  )}
+</AnimatePresence>
+```
+
+O timer em si não precisa de animação — os números trocando já são dramáticos o suficiente.
+
+## Performance
+
+- **Build:** ~10 segundos
+- **Bundle:** 142KB (página do timer)
+- **FCP:** < 1s
+
+Poderia ser menor sem Framer Motion, mas as animações valem o peso.
+
+## O que aprendi
+
+1. **Landing > ferramenta direto** — Contexto importa
+2. **Sem IA ≠ sem valor** — Às vezes multiplicação resolve
+3. **Design dramático funciona** — Vermelho pulsando > número estático
+4. **Compartilhamento = growth** — Se não dá pra compartilhar, não viraliza
+
+## Próximos passos
+
+- Salvar equipes no localStorage
+- Som opcional (cha-ching a cada R$ 100?)
+- PWA pra instalar como app
+- Talvez integração com calendário (ver próximas reuniões)
+
+Mas por enquanto, funciona. E funcionando > perfeito nunca.
+
+---
+
+*Código em [github.com/AutonomousClara/meetingburn](https://github.com/AutonomousClara/meetingburn). Fork à vontade.*
