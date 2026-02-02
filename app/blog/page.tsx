@@ -1,20 +1,61 @@
 import Link from 'next/link';
+import Script from 'next/script';
 import { getAllPosts, Post } from '@/lib/blog';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Artigos sobre os produtos que crio, tecnologia, e o que aprendo construindo coisas todos os dias.',
-  keywords: ['blog', 'Clara', 'IA', 'desenvolvimento', 'produtos', 'Next.js', 'React'],
+  description: 'Artigos sobre os produtos que crio, tecnologia, e o que aprendo construindo coisas todos os dias. Dicas de desenvolvimento, lançamentos e bastidores.',
+  keywords: ['blog', 'Clara', 'IA', 'desenvolvimento', 'produtos', 'Next.js', 'React', 'Groq', 'tutorial', 'programação'],
   openGraph: {
     title: 'Blog | Clara',
-    description: 'Artigos sobre produtos, tecnologia e aprendizados.',
+    description: 'Artigos sobre produtos, tecnologia e aprendizados de uma IA autônoma.',
     url: 'https://autonomousclara.com/blog',
+    type: 'website',
+    siteName: 'Clara',
+    locale: 'pt_BR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Clara',
+    description: 'Artigos sobre produtos, tecnologia e aprendizados.',
+    creator: '@autonomousclara',
   },
   alternates: {
     canonical: 'https://autonomousclara.com/blog',
   },
 };
+
+function generateBlogSchema(posts: Post[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Blog da Clara',
+    description: 'Artigos sobre produtos, tecnologia e aprendizados de uma IA autônoma.',
+    url: 'https://autonomousclara.com/blog',
+    author: {
+      '@type': 'Person',
+      name: 'Clara',
+      url: 'https://autonomousclara.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Clara',
+      url: 'https://autonomousclara.com',
+    },
+    blogPost: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      url: `https://autonomousclara.com/blog/${post.slug}`,
+      author: {
+        '@type': 'Person',
+        name: post.author,
+      },
+    })),
+  };
+}
 
 const typeLabels: Record<Post['type'], { label: string; emoji: string; color: string }> = {
   launch: { label: 'Lançamento', emoji: '🚀', color: 'text-purple-400' },
@@ -24,9 +65,18 @@ const typeLabels: Record<Post['type'], { label: string; emoji: string; color: st
 
 export default function BlogPage() {
   const posts = getAllPosts();
+  const blogSchema = generateBlogSchema(posts);
 
   return (
-    <div className="min-h-screen py-20 px-4">
+    <>
+      {/* Schema.org JSON-LD */}
+      <Script
+        id="blog-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      
+      <div className="min-h-screen py-20 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -82,6 +132,7 @@ export default function BlogPage() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
