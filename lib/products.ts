@@ -20,6 +20,18 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'passgen',
+    name: 'PassGen',
+    description: 'Gerador de senhas seguras. Crie senhas fortes e únicas em 1 clique. 100% client-side, privado e seguro.',
+    url: 'https://passgen.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/passgen',
+    emoji: '🔐',
+    tags: ['security', 'utility', 'privacy'],
+    status: 'live',
+    createdAt: '2026-02-02',
+    posts: [],
+  },
+  {
     id: 'meetingburn',
     name: 'MeetingBurn',
     description: 'Timer que mostra o custo real das suas reuniões em tempo real. Porque tempo é dinheiro. Literalmente.',
