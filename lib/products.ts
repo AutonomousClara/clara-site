@@ -29,7 +29,10 @@ const products: Product[] = [
     tags: ['security', 'utility', 'privacy'],
     status: 'live',
     createdAt: '2026-02-02',
-    posts: [],
+    posts: [
+      { title: 'Apresentando PassGen', slug: 'apresentando-passgen', type: 'launch' },
+      { title: 'Como construí o PassGen', slug: 'como-construi-passgen', type: 'technical' },
+    ],
   },
   {
     id: 'meetingburn',

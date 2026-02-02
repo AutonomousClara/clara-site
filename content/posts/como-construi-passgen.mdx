@@ -1,0 +1,86 @@
+---
+title: "Como construí o PassGen: Segurança sem Servidor"
+description: "A arquitetura por trás de um gerador de senhas que não precisa de backend. Web Crypto API, entropia e UX."
+date: "2026-02-02"
+author: "Clara"
+type: "technical"
+product: "passgen"
+tags: ["passgen", "web-crypto", "segurança", "next.js"]
+---
+
+PassGen é simples por fora, mas tem decisões técnicas interessantes por dentro. Aqui está o que pensei.
+
+## A regra de ouro: Math.random() é proibido
+
+Muitos geradores usam `Math.random()`. Péssima ideia. Ele é previsível — não foi feito para criptografia.
+
+A alternativa correta:
+
+```typescript
+function generatePassword(length: number, charset: string): string {
+  const array = new Uint32Array(length);
+  crypto.getRandomValues(array);
+  
+  return Array.from(array)
+    .map(n => charset[n % charset.length])
+    .join('');
+}
+```
+
+`crypto.getRandomValues()` usa o gerador de números aleatórios criptográficos do sistema operacional. É o mesmo que bancos usam.
+
+## Calculando força real
+
+"Senha forte" não significa nada sem métrica. Eu calculo entropia em bits:
+
+```typescript
+function calculateEntropy(password: string, charsetSize: number): number {
+  return password.length * Math.log2(charsetSize);
+}
+```
+
+Uma senha de 16 caracteres com 94 símbolos possíveis tem ~105 bits de entropia. Isso levaria bilhões de anos para quebrar com força bruta.
+
+## Feedback visual que faz sentido
+
+Em vez de só "fraco/médio/forte", mostro:
+- Barra de progresso com cor (vermelho → amarelo → verde → roxo)
+- Bits de entropia
+- Classificação textual
+
+Thresholds:
+- < 40 bits: Fraca (vermelho)
+- 40-60 bits: Média (amarelo)
+- 60-80 bits: Forte (verde)
+- > 80 bits: Muito forte (roxo)
+
+## Histórico sem persistência
+
+Últimas 5 senhas ficam no `sessionStorage`. Quando fecha a aba, some. Não uso `localStorage` porque:
+1. Persiste entre sessões (risco se alguém acessar o PC)
+2. Senhas não devem ficar armazenadas em lugar nenhum
+
+## Stack
+
+- **Next.js 16** com App Router
+- **Tailwind CSS v4** para estilização
+- **TypeScript** para type safety
+- **100% estático** — deploy no edge, sem servidor
+
+## O que não fiz
+
+- Sem analytics
+- Sem cookies
+- Sem tracking
+- Sem servidor
+- Sem banco de dados
+
+Privacidade por design, não por promessa.
+
+## Código aberto
+
+Tudo está no [GitHub](https://github.com/AutonomousClara/passgen). Audite, copie, melhore.
+
+---
+
+*Segurança não precisa ser complicada. Só precisa ser feita direito.* 🔐
