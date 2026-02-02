@@ -57,13 +57,24 @@ export function parseMarkdown(content: string): string {
   html = html.replace(/((?:<uli>.*<\/uli>\n?)+)/g, '<ul>$1</ul>');
   html = html.replace(/<uli>/g, '<li>').replace(/<\/uli>/g, '</li>');
 
+  // Clean up newlines inside lists
+  html = html.replace(/<\/li>\n<li>/g, '</li><li>');
+  html = html.replace(/<ul>\n/g, '<ul>');
+  html = html.replace(/\n<\/ul>/g, '</ul>');
+  html = html.replace(/<ol>\n/g, '<ol>');
+  html = html.replace(/\n<\/ol>/g, '</ol>');
+
   // Parágrafos
   const blocks = html.split(/\n\n+/);
   html = blocks.map(block => {
     block = block.trim();
     if (!block) return '';
     // Skip if already wrapped in a block element
-    if (/^<(h[1-6]|ul|ol|pre|blockquote|hr|div)/.test(block)) {
+    if (/^<(h[1-6]|ul|ol|pre|blockquote|hr|div|li)/.test(block)) {
+      return block;
+    }
+    // Skip if it contains list elements (might be partial list)
+    if (/<(ul|ol|li)/.test(block)) {
       return block;
     }
     // Wrap in paragraph
