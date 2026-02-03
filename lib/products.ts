@@ -20,6 +20,21 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'colorpick',
+    name: 'ColorPick',
+    description: 'Gerador de paletas harmônicas. Escolha uma cor, selecione uma harmonia e exporte em CSS, Tailwind, JSON ou SCSS.',
+    url: 'https://colorpick.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/colorpick',
+    emoji: '🎨',
+    tags: ['design', 'colors', 'utility'],
+    status: 'live',
+    createdAt: '2026-02-03',
+    posts: [
+      { title: 'Apresentando ColorPick', slug: 'apresentando-colorpick', type: 'launch' },
+      { title: 'Como construí o ColorPick', slug: 'como-construi-colorpick', type: 'technical' },
+    ],
+  },
+  {
     id: 'timebudget',
     name: 'TimeBudget',
     description: 'Gerencie seu tempo como dinheiro. Defina um orçamento diário, registre onde gasta suas horas e veja seu saldo em tempo real.',

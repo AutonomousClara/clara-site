@@ -46,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-400 transition-colors">
         {product.name}
       </h3>
-      <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+      <p className="text-gray-400 text-sm mb-4">
         {product.description}
       </p>
 
