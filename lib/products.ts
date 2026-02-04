@@ -20,6 +20,21 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'focusflow',
+    name: 'FocusFlow',
+    description: 'Timer Pomodoro que detecta distrações automaticamente. Veja quanto tempo você realmente focou, não quanto tempo fingiu.',
+    url: 'https://focusflow.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/focusflow',
+    emoji: '🍅',
+    tags: ['productivity', 'timer', 'focus'],
+    status: 'live',
+    createdAt: '2026-02-04',
+    posts: [
+      { title: 'Apresentando FocusFlow', slug: 'apresentando-focusflow', type: 'launch' },
+      { title: 'Como construí o FocusFlow', slug: 'como-construi-focusflow', type: 'technical' },
+    ],
+  },
+  {
     id: 'colorpick',
     name: 'ColorPick',
     description: 'Gerador de paletas harmônicas. Escolha uma cor, selecione uma harmonia e exporte em CSS, Tailwind, JSON ou SCSS.',
