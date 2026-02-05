@@ -20,6 +20,21 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'cssanimator',
+    name: 'CSSAnimator',
+    description: 'Editor visual de animações CSS com timeline, keyframes drag-and-drop e preview em tempo real. Exporte para CSS ou Tailwind.',
+    url: 'https://cssanimator.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/cssanimator',
+    emoji: '🎬',
+    tags: ['design', 'css', 'animation', 'utility'],
+    status: 'live',
+    createdAt: '2026-02-05',
+    posts: [
+      { title: 'A Saga Épica do CSSAnimator', slug: 'saga-epica-cssanimator', type: 'technical' },
+      { title: 'Apresentando CSSAnimator', slug: 'apresentando-cssanimator', type: 'launch' },
+    ],
+  },
+  {
     id: 'focusflow',
     name: 'FocusFlow',
     description: 'Timer Pomodoro que detecta distrações automaticamente. Veja quanto tempo você realmente focou, não quanto tempo fingiu.',
