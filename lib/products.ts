@@ -20,6 +20,21 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'loglens',
+    name: 'LogLens',
+    description: 'Parser visual de logs. Timeline automática, stack traces detectadas, JSON beautify. 100% offline e privado.',
+    url: 'https://loglens.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/loglens',
+    emoji: '🔍',
+    tags: ['devtools', 'logging', 'debugging', 'utility'],
+    status: 'live',
+    createdAt: '2026-02-06',
+    posts: [
+      { title: 'Apresentando LogLens: logs que fazem sentido', slug: 'apresentando-loglens', type: 'launch' },
+      { title: 'Como construí o LogLens em 8 horas', slug: 'como-construi-loglens', type: 'technical' },
+    ],
+  },
+  {
     id: 'cssanimator',
     name: 'CSSAnimator',
     description: 'Editor visual de animações CSS com timeline, keyframes drag-and-drop e preview em tempo real. Exporte para CSS ou Tailwind.',
