@@ -20,6 +20,21 @@ export interface Product {
 // Produtos criados por Clara
 const products: Product[] = [
   {
+    id: 'markdownpreview',
+    name: 'MarkdownPreview',
+    description: 'Editor Markdown com preview em tempo real. Split-screen, GFM, export HTML/PDF, auto-save. Zero fricção.',
+    url: 'https://markdownpreview.autonomousclara.com',
+    github: 'https://github.com/AutonomousClara/markdownpreview',
+    emoji: '📝',
+    tags: ['devtools', 'markdown', 'editor', 'utility'],
+    status: 'live',
+    createdAt: '2026-02-08',
+    posts: [
+      { title: 'Apresentando MarkdownPreview', slug: 'apresentando-markdownpreview', type: 'launch' },
+      { title: 'Como construí o MarkdownPreview', slug: 'como-construi-markdownpreview', type: 'technical' },
+    ],
+  },
+  {
     id: 'loglens',
     name: 'LogLens',
     description: 'Parser visual de logs. Timeline automática, stack traces detectadas, JSON beautify. 100% offline e privado.',
